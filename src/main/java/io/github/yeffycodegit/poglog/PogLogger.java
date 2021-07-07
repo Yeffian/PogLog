@@ -3,6 +3,7 @@ package io.github.yeffycodegit.poglog;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.io.github.yeffycodegit.poglog.ColorConstants;
 
 public class PogLogger {
     private final boolean logToFile;
@@ -23,7 +24,7 @@ public class PogLogger {
             return;
         }
 
-        System.out.printf("[SUCCESS] %s%n", msg.toString());
+        System.out.printf(GREEN + "[SUCCESS] %s%n" + RESET, msg.toString());
     }
 
     public void info(Object msg) throws IOException {
@@ -33,7 +34,7 @@ public class PogLogger {
             return;
         }
 
-        System.out.printf("[INFO] %s%n", msg.toString());
+        System.out.printf(BLUE + "[INFO] %s%n" + RESET, msg.toString());
     }
 
     public void warn(Object msg) throws IOException {
@@ -43,7 +44,7 @@ public class PogLogger {
             return;
         }
 
-        System.out.printf("[WARN] %s%n", msg.toString());
+        System.out.printf(YELLOW + "[WARN] %s%n" + RESET, msg.toString());
     }
 
     public void error(Object msg) throws IOException {
@@ -53,7 +54,7 @@ public class PogLogger {
             return;
         }
 
-        System.out.printf("[ERROR] %s%n", msg.toString());
+        System.out.printf(RED + "[ERROR] %s%n" + RESET, msg.toString());
     }
 
     public void error(Exception e) throws IOException {
@@ -65,8 +66,8 @@ public class PogLogger {
             return;
         }
 
-        System.out.printf("[ERROR] %s%n", e.toString());
-        System.out.printf("    [STACK TRACE] %s%n", Arrays.toString(e.getStackTrace()));
-        System.out.printf("    [CAUSE] %s%n", e.getCause());
+        System.out.printf(RED + "[ERROR] %s%n" + RESET, e.toString());
+        System.out.printf(RED + "    [STACK TRACE] %s%n" + RESET, Arrays.toString(e.getStackTrace()));
+        System.out.printf(CYAN + "    [CAUSE] %s%n" + RESET, e.getCause());
     }
 }
