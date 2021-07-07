@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        final PogLogger LOGGER = new PogLogger(true);
+        final PogLogger LOGGER = new PogLogger(false);
 
         Scanner scanner = new Scanner(System.in);
 

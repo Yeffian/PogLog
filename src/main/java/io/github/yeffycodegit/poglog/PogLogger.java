@@ -3,16 +3,18 @@ package io.github.yeffycodegit.poglog;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import java.io.github.yeffycodegit.poglog.ColorConstants;
+
+import static io.github.yeffycodegit.poglog.ColorConstants.*;
+
 
 public class PogLogger {
     private final boolean logToFile;
-    private String filename;
     FileWriter fileWriter;
+
 
     public PogLogger(boolean logToFile) throws IOException {
         this.logToFile = logToFile;
-        this.filename = "app-logs.txt";
+        String filename = "app-logs.txt";
 
         fileWriter = new FileWriter(filename);
     }
@@ -54,7 +56,7 @@ public class PogLogger {
             return;
         }
 
-        System.out.printf(RED + "[ERROR] %s%n" + RESET, msg.toString());
+        System.out.printf(ColorConstants.RED + "[ERROR] %s%n" + ColorConstants.RESET, msg.toString());
     }
 
     public void error(Exception e) throws IOException {
@@ -68,6 +70,6 @@ public class PogLogger {
 
         System.out.printf(RED + "[ERROR] %s%n" + RESET, e.toString());
         System.out.printf(RED + "    [STACK TRACE] %s%n" + RESET, Arrays.toString(e.getStackTrace()));
-        System.out.printf(CYAN + "    [CAUSE] %s%n" + RESET, e.getCause());
+        System.out.printf(RED + "    [CAUSE] %s%n" + RESET, e.getCause());
     }
 }
