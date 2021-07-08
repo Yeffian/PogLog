@@ -1,5 +1,6 @@
 package io.github.yeffycodegit.poglog;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -9,7 +10,8 @@ import static io.github.yeffycodegit.poglog.ColorConstants.*;
 
 public class PogLogger {
     private final boolean logToFile;
-    FileWriter fileWriter;
+    private final FileWriter fileWriter;
+    private BufferedWriter writer;
 
 
     public PogLogger(boolean logToFile) throws IOException {
@@ -17,12 +19,13 @@ public class PogLogger {
         String filename = "app-logs.txt";
 
         fileWriter = new FileWriter(filename);
+        writer = new BufferedWriter(fileWriter);
     }
 
     public void success(Object msg) throws IOException {
         if (logToFile) {
-            fileWriter.write("[SUCCESS] " + msg.toString() + "\n");
-            fileWriter.flush();
+            writer.write("[SUCCESS] " + msg.toString() + "\n");
+            writer.flush();
             return;
         }
 
@@ -31,8 +34,8 @@ public class PogLogger {
 
     public void info(Object msg) throws IOException {
         if (logToFile) {
-            fileWriter.write("[INFO] " + msg.toString() + "\n");
-            fileWriter.flush();
+            writer.write("[INFO] " + msg.toString() + "\n");
+            writer.flush();
             return;
         }
 
@@ -41,8 +44,8 @@ public class PogLogger {
 
     public void warn(Object msg) throws IOException {
         if (logToFile) {
-            fileWriter.write("[WARN] " + msg.toString() + "\n");
-            fileWriter.flush();
+            writer.write("[WARN] " + msg.toString() + "\n");
+            writer.flush();
             return;
         }
 
@@ -51,8 +54,8 @@ public class PogLogger {
 
     public void error(Object msg) throws IOException {
         if (logToFile) {
-            fileWriter.write("[ERROR] " + msg.toString() + "\n");
-            fileWriter.flush();
+            writer.write("[ERROR] " + msg.toString() + "\n");
+            writer.flush();
             return;
         }
 
@@ -61,10 +64,10 @@ public class PogLogger {
 
     public void error(Exception e) throws IOException {
         if (logToFile) {
-            fileWriter.write("[ERROR] " + e.toString() + "\n");
-            fileWriter.write("     [STACK TRACE] " + Arrays.toString(e.getStackTrace()) + "\n");
-            fileWriter.write("     [CAUSE] " + e.getCause() + "\n");
-            fileWriter.flush();
+            writer.write("[ERROR] " + e.toString() + "\n");
+            writer.write("     [STACK TRACE] " + Arrays.toString(e.getStackTrace()) + "\n");
+            writer.write("     [CAUSE] " + e.getCause() + "\n");
+            writer.flush();
             return;
         }
 

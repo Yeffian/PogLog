@@ -1,0 +1,6 @@
+[INFO] ye
+[INFO] cow
+[INFO] bunga
+[ERROR] java.lang.IllegalStateException: idfk
+     [STACK TRACE] [Main.main(Main.java:16)]
+     [CAUSE] null
